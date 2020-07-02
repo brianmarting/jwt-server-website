@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { decode } from 'jsonwebtoken';
-import { getAccessToken, setAccessToken } from './auth/Auth';
+import { clearAccessToken, getAccessToken, setAccessToken } from './auth/Auth';
+import { history } from './history';
 
 export const authApi = axios.create({
     baseURL: 'http://localhost:3000',
@@ -13,15 +14,27 @@ export const restApi = axios.create({
 
 restApi.interceptors.request.use(async (config: AxiosRequestConfig) => {
     const token = getAccessToken();
-    const decodedToken = decode(token, {complete: true}) as any;
 
-    if (decodedToken.payload.exp * 1000 < new Date().getTime()) {
-        await authApi.post('refresh-token').then(res => {
-            const {accessToken} = res.data;
-            setAccessToken(accessToken);
-        });
+    if (!token) {
+        await fetchAccessToken();
+    } else {
+        const decodedToken = decode(token, {complete: true}) as any;
+
+        if (decodedToken.payload.exp * 1000 < new Date().getTime()) {
+            await fetchAccessToken();
+        }
     }
 
     config.headers.Authorization = `Bearer ${getAccessToken()}`;
     return config;
 });
+
+const fetchAccessToken = async () => await authApi.post('refresh-token')
+    .then(res => {
+        const {accessToken} = res.data;
+        setAccessToken(accessToken);
+    })
+    .catch(() => {
+        clearAccessToken();
+        history.push('/login');
+    });

@@ -1,6 +1,26 @@
-.header {
+$mainColor: #cbbde2;
+$secondColor: #563d7c;
 
-  .message {
-    float: left;
+.header {
+  color: $mainColor;
+  background-color: $secondColor;
+
+
+  #menu-dropdown {
+    opacity: .8;
+    background-color: $secondColor;
+    border: 1px solid $mainColor;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .show #menu-dropdown {
+    opacity: 1;
   }
 }

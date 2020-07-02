@@ -12,7 +12,7 @@ import { isAuth } from './middleware/auth';
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false}));
     app.use(cookieParser());
-    app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
+    app.use(cors({credentials: true, origin: 'http://localhost:4000'}));
 
     app.post('/user/login', loginUser);
     app.post('/user/register', postUser);

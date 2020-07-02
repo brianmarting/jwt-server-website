@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { setAccessToken } from '../auth/Auth';
-import { authApi, restApi } from '../axios';
+import { authApi } from '../axios';
 import '../style/home.scss';
 
 export const Login: React.FC<RouteComponentProps> = ({history}) => {
