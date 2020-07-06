@@ -5,6 +5,10 @@ $secondColor: #563d7c;
   color: $mainColor;
   background-color: $secondColor;
 
+  .dropdown-menu {
+    left: auto !important;
+    right: 0 !important;
+  }
 
   #menu-dropdown {
     opacity: .8;

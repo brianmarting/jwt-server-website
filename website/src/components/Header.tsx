@@ -11,10 +11,7 @@ export const Header: React.FC<RouteComponentProps> = ({history}) => (
             {(username) => (
                 <>
                     <Navbar className='w-100' variant='dark'>
-                        <Navbar.Brand href='home' className='my-'>Programming languages</Navbar.Brand>
-                        <Nav style={{paddingTop: 2 + 'px'}}>
-                            <Nav.Link href="home">Home</Nav.Link>
-                        </Nav>
+                        <Navbar.Brand href='/' className='my-'>Programming languages</Navbar.Brand>
                         <Nav className='ml-auto float-right'>
                             <DropdownButton id='menu-dropdown' title='Settings'>
                                 <Dropdown.Header className='pb-0'>Signed in as:</Dropdown.Header>

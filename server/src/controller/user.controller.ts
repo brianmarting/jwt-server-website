@@ -3,17 +3,13 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import { User } from '../entity/User';
+import { UserMapper } from '../mappers/user.mapper';
 import { createAccessToken, sendRefreshToken } from '../token';
 import { incrementTokenVersion, updatePassword } from '../util/user.util';
 
 export const getUsers = async (req: Request, res: Response) => {
     const users = await getRepository(User).find();
-    return res.send(users.map(user => {
-        delete user.id;
-        delete user.password;
-        delete user.tokenVersion;
-        return user;
-    }));
+    return res.send(UserMapper.toDto(users));
 };
 
 export const loginUser = async (req: Request, res: Response) => {

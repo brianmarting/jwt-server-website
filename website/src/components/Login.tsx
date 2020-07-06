@@ -21,7 +21,7 @@ export const Login: React.FC<RouteComponentProps> = ({history}) => {
 
                 const {accessToken} = res.data;
                 setAccessToken(accessToken);
-                history.push('/home');
+                history.push('/');
             }).catch(console.log);
     };
 

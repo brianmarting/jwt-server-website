@@ -1,0 +1,20 @@
+.language-details {
+  width: 90%;
+  display: flex;
+  margin: auto;
+
+  img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    right: 10%;
+  }
+
+  .summary {
+    width: 80%;
+  }
+
+  * {
+    margin-bottom: 20px;
+  }
+}
